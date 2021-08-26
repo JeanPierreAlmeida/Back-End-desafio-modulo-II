@@ -207,9 +207,7 @@ Esse endpoint deverá atualizar apenas os dados do usuário de uma conta bancár
 
 -   Saída
 
-    -   Dados usuário
-    -   Número da conta
-    -   Saldo
+    -   Sucesso ou erro
 
 #### Função
 
@@ -447,7 +445,7 @@ function tranferir(...) {
 
 ### Saldo
 
-#### `GET` `/transacoes/saldo?numero_conta=123&senha=123`
+#### `GET` `/contas/saldo?numero_conta=123&senha=123`
 
 Esse endpoint deverá retornar o saldo de uma conta bancária.
 
@@ -491,7 +489,7 @@ function saldo(...) {
 
 ### Extrato
 
-#### `GET` `/conta/extrato?numero_conta=123&senha=123`
+#### `GET` `/contas/extrato?numero_conta=123&senha=123`
 
 Esse endpoint deverá listar as transações realizadas de uma conta específica.
 
