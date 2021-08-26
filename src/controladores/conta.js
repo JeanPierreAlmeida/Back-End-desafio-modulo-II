@@ -99,11 +99,11 @@ function dadosJaExiste(requisicao) {
 
 const listarContas = async (req, res) => {
     if (!req.query.senha) {
-        res.status(401);
+        res.status(404);
         res.json({mensagem: "Informe uma senha na url"});
         return;
     } else if (req.query.senha !== senhaGerente) {
-        res.status(401);
+        res.status(404);
         res.json({mensagem: "senha incorreta!"});
         return;
     }
@@ -135,6 +135,7 @@ const criarConta = async (req, res) => {
     }
 
     contas.push(novoCliente);
+    res.status(201);
     res.json(novoCliente);
     return;
 }
@@ -157,7 +158,7 @@ const atualizarUsuarioConta = async (req, res) => {
     
     if (!cliente) {
         res.status(404);
-        res.json({erro: "conta " + req.params.numeroConta + " não existe"});
+        res.json({mensagem: "conta " + req.params.numeroConta + " não existe"});
         return;
     }
 
@@ -231,7 +232,7 @@ const excluirConta = async (req, res) => {
     
     if (!cliente) {
         res.status(404);
-        res.json({erro: "conta " + req.params.numeroConta + " não existe"});
+        res.json({mensagem: "conta " + req.params.numeroConta + " não existe"});
         return;
     }
 

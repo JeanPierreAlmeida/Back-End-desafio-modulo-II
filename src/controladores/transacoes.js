@@ -146,7 +146,7 @@ const sacar = async (req, res) => {
 
     const senhaValida = validarSenhaParaConta(conta, req.body.senha.toString());
     if (!senhaValida) {
-        res.status(401);
+        res.status(404);
         res.json({mensagem: "Senha errada, informe uma senha válida!"});
         return;
     }
@@ -201,7 +201,7 @@ const tranferir = async (req, res) => {
 
     const senhaValida = validarSenhaParaConta(conta, req.body.senha.toString());
     if (!senhaValida) {
-        res.status(401);
+        res.status(404);
         res.json({mensagem: "Senha errada, informe uma senha válida!"});
         return;
     }
