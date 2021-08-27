@@ -105,8 +105,8 @@ const depositar = async (req, res) => {
 
     const conta = buscarConta(req.body.numero_conta);
     if (!conta) {
-        res.status(404);
-        res.json({mensagem: "conta " + req.body.numero_conta + " não existe"});
+        res.status(400);
+        res.json({mensagem: `conta ${req.body.numero_conta} não existe`});
         return;
     }
 
@@ -114,6 +114,7 @@ const depositar = async (req, res) => {
 
     registrarTransacoes(req.body, depositos);
     
+    res.status(200);
     res.json({mensagem: "Depósito realizado com sucesso!"});
     return;
 }
@@ -139,21 +140,21 @@ const sacar = async (req, res) => {
 
     const conta = buscarConta(req.body.numero_conta);
     if (!conta) {
-        res.status(404);
-        res.json({mensagem: "conta " + req.body.numero_conta + " não existe"});
+        res.status(400);
+        res.json({mensagem: `conta + ${req.body.numero_conta} + " não existe`});
         return;
     }
 
     const senhaValida = validarSenhaParaConta(conta, req.body.senha.toString());
     if (!senhaValida) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "Senha errada, informe uma senha válida!"});
         return;
     }
 
     const temSaldo = verificarSaldo(conta, req.body.valor);
     if (!temSaldo) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "operação não pode ser realizado, saldo insuficiente na conta."});
         return;
     }
@@ -161,6 +162,7 @@ const sacar = async (req, res) => {
     conta.saldo -= req.body.valor;
     registrarTransacoes(req.body, saques);
 
+    res.status(200);
     res.json({mensagem: "saque realizado com sucesso!"});
 }
 
@@ -187,28 +189,28 @@ const tranferir = async (req, res) => {
 
     const conta = buscarConta(req.body.numero_conta);
     if (!conta) {
-        res.status(404);
-        res.json({mensagem: "conta de origem " + req.body.numero_conta + " não existe"});
+        res.status(400);
+        res.json({mensagem: `conta de origem ${req.body.numero_conta} não existe`});
         return;
     }
 
     const contaDestino = buscarConta(req.body.numero_conta_destino);
     if (!contaDestino) {
-        res.status(404);
-        res.json({mensagem: "conta de destino " + req.body.numero_conta_destino + " não existe"});
+        res.status(400);
+        res.json({mensagem: `conta de destino ${req.body.numero_conta_destino} não existe`});
         return;
     }
 
     const senhaValida = validarSenhaParaConta(conta, req.body.senha.toString());
     if (!senhaValida) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "Senha errada, informe uma senha válida!"});
         return;
     }
 
     const temSaldo = verificarSaldo(conta, req.body.valor);
     if (!temSaldo) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "operação não pode ser realizado, saldo insuficiente na conta."});
         return;
     }
@@ -220,6 +222,7 @@ const tranferir = async (req, res) => {
     registrarTransacoes(req.body, transferencias);
     transferencia = false;
 
+    res.status(200);
     res.json({mensagem: "transferência realizado com sucesso!"});
     return;
 }

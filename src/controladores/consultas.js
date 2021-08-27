@@ -42,14 +42,14 @@ function validarParametroDeQuery(req, res) {
 
     const conta = buscarConta(req.query.numero_conta);
     if (!conta) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem:  "conta " + req.query.numero_conta + " não existe"});
         return false;
     }
 
     const senhaValida = validarSenhaParaConta(conta, req.query.senha.toString());
     if (!senhaValida) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "Senha errada, informe uma senha válida!"});
         return false;
     }
@@ -72,6 +72,8 @@ const saldo = async (req, res) => {
     if (!conta) {
         return;
     }
+
+    res.status(200);
     res.json({saldo: conta.saldo});
 }
 
@@ -91,6 +93,7 @@ const extrato = async (req, res) => {
     const transferenciasRecebidas = transferencias.filter(transferencia => transferencia.numero_conta_destino.toString() === req.query.numero_conta);
     transferenciaRecebida = false;
     
+    res.status(200);
     res.json({
         depositos: depositosNaConta, 
         saques: saquesNaConta, 

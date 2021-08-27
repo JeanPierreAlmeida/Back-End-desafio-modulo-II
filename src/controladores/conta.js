@@ -99,15 +99,16 @@ function dadosJaExiste(requisicao) {
 
 const listarContas = async (req, res) => {
     if (!req.query.senha) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "Informe uma senha na url"});
         return;
     } else if (req.query.senha !== senhaGerente) {
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "senha incorreta!"});
         return;
     }
 
+    res.status(200);
     res.json(contas);
 }
 
@@ -135,6 +136,7 @@ const criarConta = async (req, res) => {
     }
 
     contas.push(novoCliente);
+    
     res.status(201);
     res.json(novoCliente);
     return;
@@ -149,7 +151,7 @@ const atualizarUsuarioConta = async (req, res) => {
     }
 
     if (numeroDeContaInvalida(req.params.numeroConta)){
-        res.status(404);
+        res.status(400);
         res.json({mensagem: "número de conta inválida."});
         return;
     }
@@ -157,8 +159,8 @@ const atualizarUsuarioConta = async (req, res) => {
     const cliente = contas.find(conta => conta.numero_conta === req.params.numeroConta);
     
     if (!cliente) {
-        res.status(404);
-        res.json({mensagem: "conta " + req.params.numeroConta + " não existe"});
+        res.status(400);
+        res.json({mensagem: `conta ${req.params.numeroConta} não existe`});
         return;
     }
 
@@ -209,6 +211,7 @@ const atualizarUsuarioConta = async (req, res) => {
         cliente.usuario.senha = req.body.senha;
     }
 
+    res.status(200);
     res.json({mensagem: "Conta atualizada com sucesso!"});
     return;
 }
@@ -232,7 +235,7 @@ const excluirConta = async (req, res) => {
     
     if (!cliente) {
         res.status(404);
-        res.json({mensagem: "conta " + req.params.numeroConta + " não existe"});
+        res.json({mensagem: `conta ${req.params.numeroConta} não existe`});
         return;
     }
 
@@ -243,6 +246,8 @@ const excluirConta = async (req, res) => {
     }
 
     contas.splice(posicaoDaConta, 1);
+
+    res.status(200);
     res.json({mensagem: "conta excluída com sucesso."});
     return;
 }
