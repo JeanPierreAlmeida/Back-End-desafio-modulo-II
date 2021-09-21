@@ -1,0 +1,317 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/contas": {
+      "get": {
+        "tags": [],
+        "description": "End-point para listar todas as contas do nosso banco virtual",
+        "parameters": [
+          {
+            "required": true,
+            "name": "senha",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [],
+        "description": "End-point para criar uma conta no nosso banco.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "data_nascimento": {
+                  "example": "any"
+                },
+                "telefone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/contas/{numeroConta}/usuario": {
+      "put": {
+        "tags": [],
+        "description": "End-point para editar as informações da conta de um cliente.",
+        "parameters": [
+          {
+            "name": "numeroConta",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "data_nascimento": {
+                  "example": "any"
+                },
+                "telefone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/contas/{numeroConta}": {
+      "delete": {
+        "tags": [],
+        "description": "End-point para excluír uma conta no nosso banco.",
+        "parameters": [
+          {
+            "name": "numeroConta",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/transacoes/depositar": {
+      "post": {
+        "tags": [],
+        "description": "End-point para realizar deposito em uma conta.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "numero_conta": {
+                  "example": "any"
+                },
+                "valor": {
+                  "example": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/transacoes/sacar": {
+      "post": {
+        "tags": [],
+        "description": "End-point para realizar saques em uma conta.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "numero_conta": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                },
+                "valor": {
+                  "example": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/transacoes/transferir": {
+      "post": {
+        "tags": [],
+        "description": "End-point para realizar transferencia entre duas contas.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "numero_conta": {
+                  "example": "any"
+                },
+                "numero_conta_destino": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                },
+                "valor": {
+                  "example": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/contas/saldo": {
+      "get": {
+        "tags": [],
+        "description": "End-point para consultar saldo.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "senha",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "name": "numero_conta",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/contas/extrato": {
+      "get": {
+        "tags": [],
+        "description": "End-point para consultar extratos de uma conta.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "senha",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "numero_conta",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
