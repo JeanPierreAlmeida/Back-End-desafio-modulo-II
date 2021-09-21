@@ -7,25 +7,25 @@ Sua primeira tarefa como desenvolvedor é criar uma API para um Banco Digital. E
 
 Seu papel é construir uma RESTful API que permita:
 
--   Criar conta bancária
--   Atualizar os dados do usuário da conta bancária
--   Depósitar em uma conta bancária
--   Sacar de uma conta bancária
--   Transferir valores entre contas bancárias
--   Consultar saldo da conta bancária
--   Emitir extrato bancário
--   Excluir uma conta bancária
+- Criar conta bancária
+- Atualizar os dados do usuário da conta bancária
+- Depósitar em uma conta bancária
+- Sacar de uma conta bancária
+- Transferir valores entre contas bancárias
+- Consultar saldo da conta bancária
+- Emitir extrato bancário
+- Excluir uma conta bancária
 
 ## Requisitos obrigatórios
 
--   Sua API deve seguir o padrão REST
--   Seu código deve estar organizado, delimitando as responsabilidades de cada arquivo adequadamente. Ou seja, é esperado que ele tenha, no mínimo:
-    -   Um arquivo index.js
-    -   Um arquivo servidor.js
-    -   Um arquivo de rotas
-    -   Um pasta com controladores
--   Qualquer valor (dinheiro) deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
--   Evite códigos duplicados. Antes de copiar e colar, pense se não faz sentido esse pedaço de código estar centralizado numa função.
+- Sua API deve seguir o padrão REST
+- Seu código deve estar organizado, delimitando as responsabilidades de cada arquivo adequadamente. Ou seja, é esperado que ele tenha, no mínimo:
+  - Um arquivo index.js
+  - Um arquivo servidor.js
+  - Um arquivo de rotas
+  - Um pasta com controladores
+- Qualquer valor (dinheiro) deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
+- Evite códigos duplicados. Antes de copiar e colar, pense se não faz sentido esse pedaço de código estar centralizado numa função.
 
 ## Persistências dos dados
 
@@ -75,17 +75,17 @@ Abaixo, listamos os possíveis `status code` esperados como resposta da API.
 
 Esse endpoint deverá listar todas as contas bancárias existentes.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se a senha do banco foi informada (passado como query params na url)
-    -   Validar se a senha do banco está correta
+  - Verificar se a senha do banco foi informada (passado como query params na url)
+  - Validar se a senha do banco está correta
 
--   Entrada (query params)
+- Entrada (query params)
 
-    -   Senha do banco
+  - Senha do banco
 
--   Saída
-    -   listagem de todas as contas bancárias existentes
+- Saída
+  - listagem de todas as contas bancárias existentes
 
 #### Exemplo de retorno
 
@@ -128,28 +128,28 @@ Esse endpoint deverá listar todas as contas bancárias existentes.
 
 Esse endpoint deverá criar uma conta bancária, onde será gerado um número único para identificação da conta (número da conta).
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Criar uma nova conta cujo número é único
-    -   CPF deve ser um campo único.
-    -   E-mail deve ser um campo único.
-    -   Verificar se todos os campos foram informados (todos são obrigatórios)
-    -   Definir o saldo inicial da conta como 0
+  - Criar uma nova conta cujo número é único
+  - CPF deve ser um campo único.
+  - E-mail deve ser um campo único.
+  - Verificar se todos os campos foram informados (todos são obrigatórios)
+  - Definir o saldo inicial da conta como 0
 
--   Entradas
+- Entradas
 
-    -   Nome
-    -   Cpf
-    -   Data Nascimento
-    -   Telefone
-    -   Email
-    -   Senha
+  - Nome
+  - Cpf
+  - Data Nascimento
+  - Telefone
+  - Email
+  - Senha
 
--   Saída
+- Saída
 
-    -   Dados usuário
-    -   Número da conta
-    -   Saldo
+  - Dados usuário
+  - Número da conta
+  - Saldo
 
 #### Função
 
@@ -188,26 +188,26 @@ function criarConta(...) {
 
 Esse endpoint deverá atualizar apenas os dados do usuário de uma conta bancária.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se foi passado, ao menos, um campo no body da requisição
-    -   Verificar se o numero da conta passado como parametro na URL é válida
-    -   Se o CPF for informado, verificar se já existe outro registro com o mesmo CPF
-    -   Se o E-mail for informado, verificar se já existe outro registro com o mesmo E-mail
-    -   Atualizar um ou mais campos dos dados do usuário de uma conta bancária
+  - Verificar se foi passado, ao menos, um campo no body da requisição
+  - Verificar se o numero da conta passado como parametro na URL é válida
+  - Se o CPF for informado, verificar se já existe outro registro com o mesmo CPF
+  - Se o E-mail for informado, verificar se já existe outro registro com o mesmo E-mail
+  - Atualizar um ou mais campos dos dados do usuário de uma conta bancária
 
--   Entradas
+- Entradas
 
-    -   Nome
-    -   Cpf
-    -   Data Nascimento
-    -   Telefone
-    -   Email
-    -   Senha
+  - Nome
+  - Cpf
+  - Data Nascimento
+  - Telefone
+  - Email
+  - Senha
 
--   Saída
+- Saída
 
-    -   Sucesso ou erro
+  - Sucesso ou erro
 
 #### Função
 
@@ -222,12 +222,12 @@ function atualizarUsuarioConta(...) {
 ```javascript
 // HTTP Status 200
 {
-    mensagem: "Conta atualizada com sucesso!"
+  mensagem: "Conta atualizada com sucesso!";
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -237,19 +237,19 @@ function atualizarUsuarioConta(...) {
 
 Esse endpoint deve excluir uma conta bancária existente.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o numero da conta passado como parametro na URL é válida
-    -   Permitir excluir uma conta bancária apenas se o saldo for 0 (zero)
-    -   Remover a conta do objeto de persistência de dados.
+  - Verificar se o numero da conta passado como parametro na URL é válida
+  - Permitir excluir uma conta bancária apenas se o saldo for 0 (zero)
+  - Remover a conta do objeto de persistência de dados.
 
--   Entradas
+- Entradas
 
-    -   Numero da conta bancária (passado como parâmetro na rota)
+  - Numero da conta bancária (passado como parâmetro na rota)
 
--   Saida
+- Saida
 
-    -   Sucesso ou erro
+  - Sucesso ou erro
 
 #### Função
 
@@ -264,12 +264,12 @@ function excluirConta(...) {
 ```javascript
 // HTTP Status 200
 {
-    mensagem: "Conta excluída com sucesso!"
+  mensagem: "Conta excluída com sucesso!";
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -279,21 +279,21 @@ function excluirConta(...) {
 
 Esse endpoint deverá somar o valor do depósito ao saldo de uma conta válida e registrar essa transação.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o numero da conta e o valor do deposito foram informados no body
-    -   Verificar se a conta bancária informada existe
-    -   Não permitir depósitos com valores negativos ou zerados
-    -   Somar o valor de depósito ao saldo da conta encontrada
+  - Verificar se o numero da conta e o valor do deposito foram informados no body
+  - Verificar se a conta bancária informada existe
+  - Não permitir depósitos com valores negativos ou zerados
+  - Somar o valor de depósito ao saldo da conta encontrada
 
--   Entrada
+- Entrada
 
-    -   Número da conta
-    -   Valor
+  - Número da conta
+  - Valor
 
--   Saida
+- Saida
 
-    -   Sucesso ou erro
+  - Sucesso ou erro
 
 #### Função
 
@@ -308,12 +308,12 @@ function depositar(...) {
 ```javascript
 // HTTP Status 200
 {
-    mensagem: "Depósito realizado com sucesso!"
+  mensagem: "Depósito realizado com sucesso!";
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -333,23 +333,23 @@ function depositar(...) {
 
 Esse endpoint deverá realizar o saque de um valor em uma determinada conta bancária e registrar essa transação.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o numero da conta, o valor do saque e a senha foram informados no body
-    -   Verificar se a conta bancária informada existe
-    -   Verificar se a senha informada é uma senha válida para a conta informada
-    -   Verificar se há saldo disponível para saque
-    -   Subtrair o valor sacado do saldo da conta encontrada
+  - Verificar se o numero da conta, o valor do saque e a senha foram informados no body
+  - Verificar se a conta bancária informada existe
+  - Verificar se a senha informada é uma senha válida para a conta informada
+  - Verificar se há saldo disponível para saque
+  - Subtrair o valor sacado do saldo da conta encontrada
 
--   Entrada
+- Entrada
 
-    -   Número da conta
-    -   Valor
-    -   Senha
+  - Número da conta
+  - Valor
+  - Senha
 
--   Saída
+- Saída
 
-    -   Sucesso ou erro
+  - Sucesso ou erro
 
 #### Função
 
@@ -364,12 +364,12 @@ function sacar(...) {
 ```javascript
 // HTTP Status 200
 {
-    mensagem: "Saque realizado com sucesso!"
+  mensagem: "Saque realizado com sucesso!";
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -389,26 +389,26 @@ function sacar(...) {
 
 Esse endpoint deverá permitir a transferência de recursos (dinheiro) de uma conta bancária para outra e registrar essa transação.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o número da conta de origem, de destino, senha da conta de origem e valor da transferência foram informados no body
-    -   Verificar se a conta bancária de origem informada existe
-    -   Verificar se a conta bancária de destino informada existe
-    -   Verificar se a senha informada é uma senha válida para a conta de origem informada
-    -   Verificar se há saldo disponível na conta de origem para a transferência
-    -   Subtrair o valor da transfência do saldo na conta de origem
-    -   Somar o valor da transferência no saldo da conta de destino
+  - Verificar se o número da conta de origem, de destino, senha da conta de origem e valor da transferência foram informados no body
+  - Verificar se a conta bancária de origem informada existe
+  - Verificar se a conta bancária de destino informada existe
+  - Verificar se a senha informada é uma senha válida para a conta de origem informada
+  - Verificar se há saldo disponível na conta de origem para a transferência
+  - Subtrair o valor da transfência do saldo na conta de origem
+  - Somar o valor da transferência no saldo da conta de destino
 
--   Entrada
+- Entrada
 
-    -   Número da conta (origem)
-    -   Senha da conta (origem)
-    -   Valor
-    -   Número da conta (destino)
+  - Número da conta (origem)
+  - Senha da conta (origem)
+  - Valor
+  - Número da conta (destino)
 
--   Saída
+- Saída
 
-    -   Sucesso ou erro
+  - Sucesso ou erro
 
 #### Função
 
@@ -423,12 +423,12 @@ function tranferir(...) {
 ```javascript
 // HTTP Status 200
 {
-    mensagem: "Transferência realizada com sucesso!"
+  mensagem: "Transferência realizada com sucesso!";
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -449,21 +449,21 @@ function tranferir(...) {
 
 Esse endpoint deverá retornar o saldo de uma conta bancária.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
-    -   Verificar se a conta bancária informada existe
-    -   Verificar se a senha informada é uma senha válida
-    -   Exibir o saldo da conta bancária em questão
+  - Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
+  - Verificar se a conta bancária informada existe
+  - Verificar se a senha informada é uma senha válida
+  - Exibir o saldo da conta bancária em questão
 
--   Entrada (query params)
+- Entrada (query params)
 
-    -   Número da conta
-    -   Senha
+  - Número da conta
+  - Senha
 
--   Saída
+- Saída
 
-    -   Saldo da conta
+  - Saldo da conta
 
 #### Função
 
@@ -478,12 +478,12 @@ function saldo(...) {
 ```javascript
 // HTTP Status 200
 {
-    saldo: 13000
+  saldo: 13000;
 }
 
 // HTTP Status 400, 404
 {
-    mensagem: "Mensagem do erro!"
+  mensagem: "Mensagem do erro!";
 }
 ```
 
@@ -493,20 +493,20 @@ function saldo(...) {
 
 Esse endpoint deverá listar as transações realizadas de uma conta específica.
 
--   Você deverá, **OBRIGATORIAMENTE**:
+- Você deverá, **OBRIGATORIAMENTE**:
 
-    -   Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
-    -   Verificar se a conta bancária informada existe
-    -   Verificar se a senha informada é uma senha válida
-    -   Retornar a lista de transferências, depósitos e saques da conta em questão.
+  - Verificar se o numero da conta e a senha foram informadas (passado como query params na url)
+  - Verificar se a conta bancária informada existe
+  - Verificar se a senha informada é uma senha válida
+  - Retornar a lista de transferências, depósitos e saques da conta em questão.
 
--   Entrada (query params)
+- Entrada (query params)
 
-    -   Número da conta
-    -   Senha
+  - Número da conta
+  - Senha
 
--   Saída
-    -   Relatório da conta
+- Saída
+  - Relatório da conta
 
 #### Função
 
@@ -569,15 +569,5 @@ function extrato(...) {
     mensagem: 'Mensagem do erro!'
 }
 ```
-
-## Aulas úteis:
-
--   [Roteador e Controlador](https://plataforma.cubos.academy/curso/b0149c95-5986-4ac2-ac4c-a0f323353f26/data/28/07/2021/aula/b648d8cb-a9db-4224-96dc-ed83e99bcc7b/27eebd29-2318-41eb-b789-201f075be137)
--   [Aula API REST](https://plataforma.cubos.academy/curso/b0149c95-5986-4ac2-ac4c-a0f323353f26/data/26/07/2021/aula/059dc3f1-f8b5-4e5b-86ec-cea2736645b8/)
--   [Formatando datas com date-fns](https://plataforma.cubos.academy/curso/b0149c95-5986-4ac2-ac4c-a0f323353f26/data/02/08/2021/aula/506a987e-ba14-4ee4-9326-c9e1aa62b7f7/5d2dceac-f1b3-460a-856e-b83701fa5206)
--   [Aula de funções e objetos](https://plataforma.cubos.academy/curso/b0149c95-5986-4ac2-ac4c-a0f323353f26/data/21/06/2021/aula/5fbcc043-aa55-45a4-bced-4c59751fc2d8/)
--   [Aula de Revisão](https://plataforma.cubos.academy/curso/b0149c95-5986-4ac2-ac4c-a0f323353f26/data/18/08/2021/aula/cbf59ce0-e7c7-405d-938e-e70afcbba534/)
-
-**LEMBRE-SE**: é melhor feito do que perfeito!!!
 
 ###### tags: `back-end` `módulo 2` `nodeJS` `API REST` `desafio`
